@@ -1,0 +1,112 @@
+/* ==========================================================================
+   Sweet Fern — Design Tokens
+   Single source of truth for colour, type, space, radius, shadow, motion.
+   Every other stylesheet consumes these variables only.
+   ========================================================================== */
+
+:root {
+  /* --- Brand palette -------------------------------------------------- */
+  --forest:       #1f3a2e;   /* primary — deep pine green   */
+  --forest-deep:  #14261d;   /* footer / darkest surface    */
+  --forest-soft:  #2c4c3d;   /* raised surface on dark      */
+
+  --cream:        #f7f2e9;   /* page background             */
+  --cream-deep:   #efe7d9;   /* alternating band            */
+  --paper:        #fffdf9;   /* cards on cream              */
+
+  --ink:          #2a2620;   /* primary text                */
+  --ink-soft:     #554e46;   /* secondary text              */
+  --muted:        #7d7469;   /* tertiary text / captions    */
+
+  --cocoa:        #6b4a34;   /* warm accent text            */
+  --gold:         #b08d57;   /* metallic accent / rules     */
+  --gold-soft:    #d9c08c;   /* accent on dark surfaces     */
+
+  --line:         #e0d7c6;   /* hairline borders            */
+  --line-strong:  #cec2ac;
+
+  --whatsapp:     #1f6b45;   /* WhatsApp green, tuned to brand */
+  --danger:       #9c3f33;
+  --focus:        #7a5c2e;
+
+  /* --- Type families -------------------------------------------------- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --font-body:    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                  "Helvetica Neue", Arial, sans-serif;
+
+  /* --- Fluid type scale ----------------------------------------------- */
+  --fs-display: clamp(2.6rem, 6vw, 4.5rem);
+  --fs-h1:      clamp(2.15rem, 4.4vw, 3.35rem);
+  --fs-h2:      clamp(1.7rem, 3vw, 2.4rem);
+  --fs-h3:      clamp(1.15rem, 1.5vw, 1.375rem);
+  --fs-h4:      1.0625rem;
+  --fs-lede:    clamp(1.0625rem, 1.35vw, 1.1875rem);
+  --fs-body:    1rem;
+  --fs-sm:      0.9375rem;
+  --fs-xs:      0.8125rem;
+  --fs-2xs:     0.75rem;
+  --fs-eyebrow: 0.6875rem;
+
+  --lh-display: 1.04;
+  --lh-head:    1.16;
+  --lh-body:    1.68;
+  --ls-display: -0.022em;
+  --ls-eyebrow: 0.16em;
+
+  /* --- Spacing scale (8px base) --------------------------------------- */
+  --s-1:  0.25rem;  /*  4 */
+  --s-2:  0.5rem;   /*  8 */
+  --s-3:  0.75rem;  /* 12 */
+  --s-4:  1rem;     /* 16 */
+  --s-5:  1.5rem;   /* 24 */
+  --s-6:  2rem;     /* 32 */
+  --s-7:  2.5rem;   /* 40 */
+  --s-8:  3rem;     /* 48 */
+  --s-9:  4rem;     /* 64 */
+  --s-10: 5rem;     /* 80 */
+  --s-11: 6.5rem;   /* 104 */
+  --s-12: 8rem;     /* 128 */
+
+  --section-y: clamp(3.5rem, 7.5vw, 6.5rem);
+  --gutter:    clamp(1.25rem, 4vw, 2.5rem);
+  --measure:   68ch;
+
+  /* --- Radius system (one scale, no one-offs) -------------------------- */
+  --r-xs:   4px;
+  --r-sm:   8px;
+  --r:      14px;
+  --r-lg:   22px;
+  --r-xl:   32px;
+  --r-pill: 999px;
+
+  /* --- Shadow system: warm layered shadows at three elevations ---------- */
+  --shadow-sm: 0 1px 2px rgba(42, 38, 32, .05),
+               0 2px 6px rgba(42, 38, 32, .05);
+  --shadow:    0 2px 4px rgba(42, 38, 32, .05),
+               0 10px 26px rgba(42, 38, 32, .08);
+  --shadow-md: 0 2px 8px rgba(42, 38, 32, .06);
+  --shadow-lg: 0 4px 10px rgba(42, 38, 32, .06),
+               0 26px 60px rgba(42, 38, 32, .14);
+
+  /* --- Motion --------------------------------------------------------- */
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --dur-fast: 140ms;
+  --dur: 240ms;
+  --dur-slow: 420ms;
+
+  /* --- Layout --------------------------------------------------------- */
+  --maxw: 1200px;
+  --header-h: 72px;
+  --z-header: 60;
+  --z-drawer: 80;
+  --z-overlay: 100;
+}
+
+@media (max-width: 640px) {
+  :root { --header-h: 64px; }
+}
+
+/* Honour the OS-level motion preference everywhere. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0ms; --dur: 0ms; --dur-slow: 0ms; }
+}

@@ -1,2 +1,8 @@
+# robots.txt — Sweet Fern
+# Replace the Sitemap URL below with your own domain once the site is live
+# on a custom host. Everything here is public, so nothing is disallowed.
+
 User-agent: *
 Allow: /
+
+Sitemap: https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/sitemap.xml

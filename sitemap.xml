@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap for Sweet Fern. Update the <loc> values to your own domain
+     once the site is hosted on a custom address. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/index.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/menu.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/custom-cakes.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/gallery.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/about.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://static.teamily.ai/sites/1ead3ff5-ddf5-4d1d-ad09-e986f15d1e27/webpages/sweet-fern/contact.html</loc>
+    <lastmod>2026-10-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
