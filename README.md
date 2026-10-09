@@ -1,225 +1,152 @@
-# Sweet Fern — Home Bakery Website
+Sweet Fern — Home Bakery Website
 
-A hand-built, six-page static website for a home bakery on Canal Road, Surat.
-No framework, no build step, no dependencies to install. Open `index.html` and it works.
+A responsive, six-page website for Sweet Fern, a home bakery based in Surat, Gujarat, India. Built with semantic HTML5, modular CSS3, and vanilla JavaScript, the website showcases bakery products, custom cake enquiries, the brand story, and contact information.
 
----
+Overview
 
-## What is in here
+Sweet Fern is a lightweight, mobile-first website designed to provide a clear and accessible browsing experience without requiring a JavaScript framework, build tools, or a backend.
 
-```
+Technology stack
+
+HTML5
+CSS3 with modular stylesheets and design tokens
+Vanilla JavaScript
+WebP, PNG, and JPEG image assets
+WhatsApp and email for customer enquiries
+Features
+Home: Brand introduction and featured products.
+Menu: Bakery product categories and pricing.
+Custom Cakes: Custom cake information and enquiry form.
+Gallery: Image gallery with lightbox functionality.
+About: Brand story, preparation process, and FAQs.
+Contact: Contact information, business hours, location, and enquiry form.
+Responsive design: Mobile-first layouts for different screen sizes.
+Accessibility: Semantic HTML, keyboard-friendly navigation, labelled forms, and reduced-motion support.
+Progressive enhancement: Core content remains readable without JavaScript.
+Project Structure
 sweet-fern/
-├── index.html            Home
-├── menu.html             Menu & prices
-├── custom-cakes.html     Custom cake builder + enquiry
-├── gallery.html          Photo gallery + lightbox
-├── about.html            Story, process, FAQs
-├── contact.html          Contact, hours, location, enquiry
-│
+├── index.html
+├── menu.html
+├── custom-cakes.html
+├── gallery.html
+├── about.html
+├── contact.html
 ├── css/
-│   ├── tokens.css        Design tokens — colour, type, space, radius, shadow
-│   ├── base.css          Reset, element defaults, typography, a11y primitives
-│   ├── layout.css        Page shell — container, sections, grids, header, footer
-│   ├── components.css    Buttons, cards, menu rows, forms, overlays, gallery
-│   └── motion.css        Scroll-reveal + reduced-motion handling
-│
+│   ├── tokens.css
+│   ├── base.css
+│   ├── layout.css
+│   ├── components.css
+│   └── motion.css
 ├── js/
-│   └── main.js           All behaviour (see below)
-│
-├── images/               Optimised WebP/PNG/JPG assets
+│   └── main.js
+├── images/
 ├── robots.txt
-└── sitemap.xml
-```
+├── sitemap.xml
+└── README.md
+Architecture
 
-**Load order matters.** Every page links the five stylesheets in the order above:
-tokens → base → layout → components → motion. `tokens.css` must come first because
-everything else consumes its custom properties.
+The website uses a modular stylesheet structure:
 
----
+File	Responsibility
+tokens.css	Colour palette, typography, spacing, radii, and shadows
+base.css	Resets, typography, default elements, and accessibility foundations
+layout.css	Page containers, sections, grids, header, and footer
+components.css	Buttons, cards, forms, gallery, and overlays
+motion.css	Scroll-reveal effects and reduced-motion handling
+main.js	Navigation, forms, FAQs, gallery interactions, and other client-side behaviour
 
-## Design system
+Stylesheet order matters: Load the stylesheets in the order listed above so design tokens are available to the styles that depend on them.
 
-Everything visual is driven by `css/tokens.css`. Change a value there and it
-propagates through the whole site — nothing is hard-coded in the page-level CSS.
+Design System
 
-| Token group | What it controls |
-|---|---|
-| `--forest`, `--cream`, `--cocoa`, `--gold`, `--ink` | The whole palette |
-| `--font-display`, `--font-body` | Fraunces (headings) + Inter (body) |
-| `--fs-*` | A fluid clamp-based type scale |
-| `--s-1` … `--s-12` | An 8px-based spacing scale |
-| `--r-xs` … `--r-pill` | One radius scale, no one-off values |
-| `--shadow-sm` / `--shadow` / `--shadow-lg` | One warm shadow, three elevations |
-| `--section-y`, `--gutter`, `--maxw` | Layout rhythm |
+The visual system is centralised in css/tokens.css to maintain consistent styling throughout the website.
 
-**Breakpoints:** 560px, 768px, 1024px, 1280px. The base styles are mobile-first;
-everything rises from there.
+Colours: Forest green, warm cream, cocoa, antique gold, and ink.
+Typography: Fraunces for headings and Inter for body text.
+Spacing: A reusable spacing scale.
+Components: Shared radius and shadow values.
+Responsive layouts: Mobile-first styles with breakpoints at 560px, 768px, 1024px, and 1280px.
 
-**To change the brand colour**, edit `--forest` and `--gold` in `tokens.css`,
-then re-generate `images/icon-*.png` and `images/og-image.jpg` to match.
+Update the design tokens centrally when adjusting the brand's visual identity.
 
----
+JavaScript Functionality
 
-## JavaScript
+The js/main.js file contains the website's interactive behaviour, including:
 
-`js/main.js` is one IIFE with nine small initialisers, all progressive
-enhancement — the site is fully readable and navigable with JS switched off.
+Header scroll state.
+Accessible mobile navigation drawer.
+Optional visitor personalisation.
+Enquiry form validation and message composition.
+FAQ accordion.
+Gallery lightbox.
+Business-hours display.
+Automatic copyright year.
+Scroll-reveal effects with reduced-motion support.
+Customer Enquiries
 
-| # | Module | What it does |
-|---|---|---|
-| 1 | `initHeader` | Adds `.is-stuck` to the header after 8px of scroll |
-| 2 | `initDrawer` | Slide-in mobile nav — focus trap, scroll lock, Esc to close |
-| 3 | `initPersonalise` | The optional name prompt (see below) |
-| 4 | `initEnquiryForms` | Validates, then opens WhatsApp or email pre-filled |
-| 5 | `initFaq` | Accordion on `about.html` |
-| 6 | `initLightbox` | Gallery viewer — Esc to close, click-outside to close |
-| 7 | `initHours` | Highlights today's row and shows an "Open now" badge |
-| 8 | `initYear` | Fills any `[data-year]` with the current year |
-| 9 | `initReveal` | IntersectionObserver scroll-reveal, disabled for reduced motion |
+The website does not use a backend or database. Enquiry forms validate the submitted information in the browser and prepare a message for WhatsApp or the visitor's email client.
 
-### Site configuration
+Visitors review and send the message themselves. No server-side message processing is provided.
 
-All the values you are likely to change live in one object at the top of the file:
+Before deployment, replace all demonstration contact details and configuration values with verified business information.
 
-```js
-var SITE = {
-  whatsapp: '91XXXXXXXXXX',              // digits only, no + and no spaces
-  email: 'hello@sweetfern.example',
-  instagram: 'https://instagram.com/'
-};
-```
+Configuration and Pre-Deployment Checklist
 
----
+Review the following items before publishing the website:
 
-## What you must replace before publishing
+Replace placeholder WhatsApp numbers and displayed phone numbers.
 
-Search the project for these and replace each one. Every occurrence is a
-deliberate placeholder.
+Replace placeholder email addresses.
 
-| Placeholder | Where | Notes |
-|---|---|---|
-| `91XXXXXXXXXX` | every page, `main.js` | WhatsApp number, digits only |
-| `+91 XXXXX XXXXX` | every page | Displayed phone number |
-| `hello@sweetfern.example` | every page, `main.js` | Contact email |
-| `FSSAI Lic. No. XXXXXXXXXXXXXX` | footers, `contact.html` | Required for Indian food businesses |
-| `<iframe>` map | `contact.html` | Google Maps embed |
-| Instagram URL | `contact.html`, `main.js` | Your real profile |
-| Testimonials | `index.html` | Three sample quotes — replace with real ones, with permission |
-| `canonical` / `og:url` | every `<head>` | Replace with your own domain |
+Add the correct Instagram profile URL.
 
-There are also HTML comments in the source pointing at the testimonials and the
-map block, so you will find them if you search for `SAMPLE CONTENT` or `Map placeholder`.
+Add the verified Google Maps embed and business location.
 
----
+Verify business hours and product pricing.
 
-## The entry-flow decision
+Replace sample testimonials with genuine testimonials used with permission.
 
-The original site opened with a **blocking modal** that demanded first *and* last
-name before any content was visible, and returned on every visit.
+Add the correct FSSAI registration or licence details where applicable.
 
-This build removes it entirely. In its place:
+Update canonical URLs, Open Graph URLs, sitemap.xml, and robots.txt.
 
-- The page renders immediately. There is no gate and no overlay on load.
-- After the visitor scrolls a little (or 12 seconds pass), a small **dismissible
-  card** slides up from the bottom offering a single optional field.
-- There is a visible **"No thanks, don't ask again"** control.
-- Choosing to skip is remembered, and the card never returns.
-- The name is stored in `localStorage` under `dc.name` — on the visitor's device
-  only. Nothing is transmitted anywhere, and no account exists.
-- The name is used for one thing: a greeting in the hero, e.g.
-  "Welcome back, Kashish."
+Test navigation, gallery interactions, forms, and responsive layouts.
 
-To clear a stored name during testing, run this in the browser console:
+Check all internal links and image paths before deployment.
 
-```js
-localStorage.removeItem('dc.name');
-localStorage.removeItem('dc.promptSkipped');
-```
+Accessibility
 
----
+The website is designed with accessibility best practices in mind, with a target of WCAG 2.2 AA.
 
-## How forms work
+Implemented considerations include semantic landmarks, skip navigation links, labelled form controls, keyboard interaction, accessible error announcements, suitable touch-target sizes, and support for reduced-motion preferences.
 
-There is **no backend**. Both enquiry forms (`custom-cakes.html`, `contact.html`)
-validate in the browser, then compose a neatly formatted message and open either
-WhatsApp (`wa.me/…?text=…`) or the visitor's mail client with it pre-filled. The
-visitor reviews it and sends it themselves.
+The target is not a substitute for a formal accessibility audit; the deployed website should be tested against the applicable WCAG criteria.
 
-This was a deliberate choice: it needs no server, no database and no hosting
-cost, and the visitor can see exactly what is being sent before it goes. If you
-later want messages delivered to an inbox without the visitor pressing send,
-that needs a real backend — at which point consider a small form endpoint
-(a Netlify/Cloudflare Function or a Formspree account) and update
-`initEnquiryForms` accordingly.
+Performance and Assets
 
----
+The website uses optimised image assets and avoids a framework or build pipeline. Images are stored locally in the images/ directory.
 
-## Brand
+Keep asset paths, image dimensions, and references consistent when updating or replacing images. Recheck performance and image quality after making changes.
 
-The logo is a single fern frond in clean line art — warm cream and antique gold
-on deep forest green — inside a rounded square. The same mark is used everywhere:
-header, footer, and the favicon / app-icon set.
+Deployment
 
-| File | Use |
-|---|---|
-| `images/icon-512.png` | App icon, structured-data `logo` |
-| `images/icon-192.png` | Header + footer brand mark |
-| `images/apple-touch-icon.png` | iOS home-screen icon (180px) |
-| `images/favicon-32.png`, `favicon-64.png` | Browser tab |
-| `images/og-image.jpg` | 1200×630 social share card |
+The site can be deployed to a static hosting provider, including GitHub Pages, Netlify, or Cloudflare Pages.
 
-The wordmark is set in Fraunces 600 with slightly tight tracking. The descriptor
-line ("Home Bakery · Surat") is Inter, uppercase, tracked wide in `--gold`.
-There is no script, handwritten or pink/watercolour styling anywhere in the brand.
+Upload the website files to the hosting provider.
+Configure the deployment source and domain.
+Update canonical URLs and sitemap references.
+Verify the robots.txt configuration.
+Test the deployed pages, forms, links, and images.
+Submit the sitemap to Google Search Console if search indexing is desired.
 
----
+No compilation or build step is required.
 
-## Images
+Ownership and Usage
 
-Every image in `images/` is either a genuine photograph from the bakery's own
-kitchen or an original image generated for this project. None are stock or
-web-sourced.
+Sweet Fern website source code and project assets are intended for authorised use only.
 
-Naming follows the content, not the source: `cheesecake-caramel.webp`,
-`menu-brownies.webp`, `custom-cake.webp`, and so on.
+Unauthorised copying, redistribution, modification, or commercial reuse is not permitted without the owner's permission. Ownership of third-party materials, if any, remains subject to their respective terms.
 
-All are WebP at quality 82 with sensible maximum widths, except the icons and
-the Open Graph card. To regenerate an icon or `og-image.jpg` after a brand
-change, you will need Pillow (`pip install pillow`).
+This notice expresses the intended usage policy. Repository access controls and applicable legal protections must be used to enforce it; this README alone does not technically restrict copying or modification.
 
----
-
-## Deploying
-
-The site is fully static, so any host works — Netlify, Cloudflare Pages, GitHub
-Pages, or a plain Apache/Nginx directory.
-
-1. Upload the whole `sweet-fern/` folder.
-2. Point your domain at it.
-3. Update the `canonical`, `og:url` and `sitemap.xml` URLs to that domain.
-4. Update the `Sitemap:` line in `robots.txt`.
-5. Submit `sitemap.xml` in Google Search Console.
-
-No build step, no environment variables, nothing to compile.
-
----
-
-## Accessibility notes
-
-Targeting **WCAG 2.2 AA**.
-
-- Semantic landmarks throughout: `header`, `nav`, `main`, `footer`, `aside`, `figure`/`figcaption`.
-- A skip link on every page.
-- The mobile drawer traps focus, locks scroll, closes on Esc, and returns focus to the toggle.
-- The lightbox behaves the same way and restores focus on close.
-- Every form field has a real `<label>`; errors are announced via `aria-live="polite"` and set `aria-invalid` on the offending input.
-- Body text is `--ink` on `--cream`, which clears 4.5:1 comfortably. Accent text uses `--cocoa` rather than `--gold`, because gold at body size does not.
-- Touch targets are at least 44×44px.
-- `prefers-reduced-motion` is honoured: all transitions collapse and the scroll-reveal is disabled entirely.
-
----
-
-## License
-
-The site code is yours to modify and deploy. Photographs remain the property of
-the bakery.
+Sweet Fern — Home Bakery · Surat, Gujarat, India
